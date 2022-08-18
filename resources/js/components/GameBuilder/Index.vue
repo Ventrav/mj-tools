@@ -18,6 +18,7 @@ export default {
         return {
             spells: [
                 {
+                    id: 1,
                     name: "Boule de feu",
                     shortDescription: "Le lanceur caste une immense boule de feu qui fait très mal",
                     description: "Après un temps de cast, le lanceur fait apparaitre une boule de feu dans sa main qui envoie ensuite dans une zone de 20m de diamètre à une distance de 10m. Toutes les cibles dans la zone doivent faire un test de dextérité ou sibur 6D8. En cas de réussite, ils ne subissent que la moitié",
@@ -26,6 +27,7 @@ export default {
                     duration: "instantanée"
                 },
                 {
+                    id: 2,
                     name: "Armure du mage",
                     shortDescription: "La cible dispose de protection magique supplémentaire",
                     description: "Le lanceur touche une créature qui dispose à présent d'une armure magique. Ainsi sa CA passe à 14 et il obtient la résistance aux dégâts magiques",

@@ -11,7 +11,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="spell in this.spells" @click="showModal(spell)">
+                <tr v-for="spell in this.spells" :key="spell.id" @click="showModal(spell)">
                     <td>{{spell.name}}</td>
                     <td>{{spell.shortDescription}}</td>
                     <td>{{spell.incantation}}</td>
@@ -41,6 +41,7 @@
         }, 
         methods: {
             showModal(spell) {
+                console.log("coucou")
                 this.showDetails = true, 
                 this.currentSpell = spell
             },
