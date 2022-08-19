@@ -4,8 +4,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-10">
-                    <label for="game-name" class="form-label">Nom du jeu</label>
-                    <input type="text" v-model="newGame.name" class="form-control">
+                    <input type="text" placeholder="Nom du jeu" v-model="newGame.name" class="form-control">
                 </div>
                 <div class="col-2">
                     <button class="btn-primary btn" @click="saveGame">Créer</button>
@@ -15,6 +14,8 @@
     </div>
 </template>
 <script>
+import axios from 'axios';
+
 export default {
     data: function() {
         return {
@@ -25,6 +26,7 @@ export default {
     }, 
     methods: {
         saveGame() {
+            axios.post('/games', {name: this.newGame.name})
             console.table(this.newGame)
         }
     }

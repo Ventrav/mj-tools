@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\GameController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// GAME'S ROUTES
+Route::controller(GameController::class)->group(function() {
+    Route::post('/games', 'store');
+});
+
 Route::get('/', function () {
+    Auth::loginUsingId(1);
     return view('index');
 });
