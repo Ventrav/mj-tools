@@ -15,6 +15,7 @@
     <router-link to="/">Acceuil</router-link>
     <router-link to="/profile">Profile</router-link>
     <router-link to="/game-builder">Game builder</router-link>
+    <router-link to="/game">Game</router-link>
         @yield('content')
     </div>
 </body>
