@@ -10,24 +10,38 @@
                     <button class="btn-primary btn" @click="saveGame">Créer</button>
                 </div>
             </div>
+            <div class="row">
+                <GamesTable :games="games"></GamesTable>
+            </div>
         </div>
     </div>
 </template>
 <script>
 import axios from 'axios';
+import GamesTable from "./addons/GamesTable.vue";
 
 export default {
+    components: {
+    GamesTable
+},
     data: function() {
         return {
             newGame: {
                 name: ""
-            }
+            },
+            games: []
         }
     }, 
+    beforeMount() {
+        axios.get('/games/my').then((response) => {
+            this.games = response.data
+        });
+    },
     methods: {
         saveGame() {
-            axios.post('/games', {name: this.newGame.name})
-            console.table(this.newGame)
+            axios.post('/games', {name: this.newGame.name}).then((response) => {
+                this.games.push(response.data)
+            })
         }
     }
 }

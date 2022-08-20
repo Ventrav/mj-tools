@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 // GAME'S ROUTES
 Route::controller(GameController::class)->group(function() {
     Route::post('/games', 'store');
+    Route::get('/games/my', 'getMyGame');
 });
 
 Route::get('/', function () {

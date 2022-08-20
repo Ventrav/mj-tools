@@ -9,11 +9,17 @@ use Illuminate\Support\Facades\Auth;
 class GameController extends Controller
 {
     public function store(Request $req) {
-        Game::create([
+        $game = Game::create([
             "name" => $req->name,
             "owner" => Auth::user()->id
         ]);
 
-        return response()->json("Game added", 201);
+        return response()->json($game, 201);
+    }
+
+    public function getMyGame() {
+        $games = Game::where("owner", Auth::user()->id)->get();
+
+        return response()->json($games, 200);
     }
 }
