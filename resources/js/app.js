@@ -8,6 +8,8 @@ import './bootstrap';
 import { createApp } from 'vue';
 import {routes} from './config/routes'
 import { createRouter, createWebHashHistory } from 'vue-router'
+import { createStore } from 'vuex';
+import commonStore from './stores/common';
 
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
@@ -23,6 +25,13 @@ const router = createRouter({
 })
 
 app.use(router)
+
+const store = createStore({
+    modules: {
+        commonStore
+    }
+})
+app.use(store)
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

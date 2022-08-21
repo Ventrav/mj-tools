@@ -25,3 +25,8 @@ Route::get('/', function () {
     Auth::loginUsingId(1);
     return view('index');
 });
+
+Route::get('/users/test', function() {
+    Auth::loginUsingId(1);
+    return response(Auth::user());
+});
