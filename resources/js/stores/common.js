@@ -12,8 +12,8 @@ const commonStore = {
     },
     mutations: {
         SET_USER(s, payload) {
-            console.log("je suis là")
             s.user = payload
+            this.dispatch('games/fetchAuthUser')
         }
     },
     actions: {

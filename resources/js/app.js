@@ -10,6 +10,7 @@ import {routes} from './config/routes'
 import { createRouter, createWebHashHistory } from 'vue-router'
 import { createStore } from 'vuex';
 import common from './stores/common';
+import games from './stores/games';
 
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
@@ -28,7 +29,8 @@ app.use(router)
 
 const store = createStore({
     modules: {
-        common
+        common,
+        games
     }
 })
 app.use(store)

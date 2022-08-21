@@ -5,7 +5,7 @@
 <script>
     export default {
         mounted() {
-            this.$store.dispatch('fetch')
+            this.$store.dispatch('common/fetch')
         },
         data: function () {
             return {
