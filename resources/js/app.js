@@ -9,7 +9,7 @@ import { createApp } from 'vue';
 import {routes} from './config/routes'
 import { createRouter, createWebHashHistory } from 'vue-router'
 import { createStore } from 'vuex';
-import commonStore from './stores/common';
+import common from './stores/common';
 
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
@@ -28,7 +28,7 @@ app.use(router)
 
 const store = createStore({
     modules: {
-        commonStore
+        common
     }
 })
 app.use(store)
