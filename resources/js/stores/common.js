@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const commonStore = {
+    namespaced: true,
     state: {
         user: undefined
     }, 
