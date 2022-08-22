@@ -10,4 +10,8 @@ class Game extends Model
     use HasFactory;
 
     protected $fillable = ["name", "owner"];
+
+    public function character_sheet() {
+        return $this->hasOne(CharacterSheet::class, "game_id", "id");
+    }
 }
