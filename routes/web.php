@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\CharacterSheetController;
 use App\Http\Controllers\GameController;
+use App\Models\CharacterSheet;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +22,11 @@ Route::controller(GameController::class)->group(function() {
     Route::post('/games', 'store');
     Route::get('/games/my', 'getMyGame');
     Route::post('/games/{id}/character-sheet', 'createCharacterSheet');
+});
+
+//CHARACTER SHEET'S ROUTES
+Route::controller(CharacterSheetController::class)->group(function() {
+    Route::get('/character-sheets/{id}', 'get');
 });
 
 Route::get('/', function () {

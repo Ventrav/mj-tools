@@ -10,4 +10,8 @@ class CharacterSheet extends Model
     use HasFactory;
 
     protected $fillable = ["game_id"];
+
+    public function sections() {
+        return $this->belongsToMany(Section::class, 'attributes_sections', 'attributes_id', 'sections_id')
+    }
 }
