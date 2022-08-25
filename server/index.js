@@ -4,14 +4,17 @@ import { Router } from 'express';
 const app = express();
 const router = Router();
 
+app.use(router);
+
 router.get('/test', (req, res) => {
-    return {
+    console.log("Je suis passé ici")
+    res.json({
         test: "toto",
         test2: "titi"
-    }
+    })
 })
 
-export default {
+module.exports=  {
     path: '/api',
     handler: app,
-  };  
+};  
