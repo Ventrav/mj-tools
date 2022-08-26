@@ -1,0 +1,22 @@
+# For more information: https://laravel.com/docs/sail
+version: '3'
+services:
+    app:
+        image: node
+        working_dir: /home/node/app
+        volumes:
+            - ./:/home/node/app
+        ports:
+            - 3000:3000
+    db: 
+        image: mongo
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD: root
+        ports: 
+            - 27017:27017
+        networks:
+            - app_network
+networks:
+    app_network:
+        driver: bridge
