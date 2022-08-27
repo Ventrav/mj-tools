@@ -9,10 +9,19 @@
                 <b-button block @click="storeGame">Sauvegarder</b-button>
             </b-col>
         </b-row>
+        <b-row class="mt-5">
+            <b-col cols="12">
+                <gameTable :games="games"></gameTable>
+            </b-col>
+        </b-row>
     </b-container>
 </template>
 <script>
+import gameTable from '~/components/games/gameTable.vue';
 export default {
+    components: {
+        gameTable
+    },
     beforeMount() {
         this.$store.dispatch('games/fetch')
     }, 
@@ -24,6 +33,11 @@ export default {
     methods: {
         storeGame() {
             this.$store.dispatch('games/add', {name: this.gameName});
+        }
+    }, 
+    computed: {
+        games() {
+            return this.$store.getters["games/list"];
         }
     }
 }

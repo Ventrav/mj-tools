@@ -14,14 +14,18 @@ export const mutations = {
 }
 
 export const getters =  {
-    list(s, g, rootState, rootGetters) {
-        return s;
+    list (s, g, rootState, rootGetters) {
+        return Object.values(s).map(el => ({
+            ...el,
+            characterSheet: rootGetters['character-sheets/list'].find((cs) => cs.game === el._id)
+        }))
     }
 }
 
 export const actions = {
     async fetch({ commit }) {
         const { data } = await this.$axios.get('/api/games');
+        await this.dispatch('character-sheets/fetch');
         commit('SET_GAMES', data);
     }, 
     async add({ commit }, payload) {
