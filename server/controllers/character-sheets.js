@@ -1,5 +1,5 @@
 import {
-    getCharacterSheets, insertCharacterSheet
+    getCharacterSheets, insertCharacterSheet, setCharacterSheet
 } from '../services/character-sheets';
 
 export async function get(req, res) {
@@ -20,4 +20,16 @@ export async function insert(req, res) {
         console.log(e)
         res.status(500).send(e);
     }
+}
+
+export async function set(req, res) {
+    console.table(req.body.data);
+    try {
+        let data = req.body.data;
+        const result = await setCharacterSheet(data);
+        res.status(201).send(result);
+    } catch (e) {
+        console.log(e);
+        res.status(500).send(e);
+    } 
 }
