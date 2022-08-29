@@ -4,7 +4,7 @@
         <b-row>
             <b-col cols="12" class="mt-3">
                 <b-btn block v-if="!game.characterSheet" @click="createCharacterSheet">Créer</b-btn>
-                <builder v-else :characterSheet="characterSheet"></builder>
+                <builder v-else :characterSheetId="game.characterSheet._id"></builder>
             </b-col>
         </b-row>
         {{game.characterSheet}}
@@ -22,11 +22,6 @@ export default {
     computed: {
         game() {
             return this.$store.getters["games/list"].find(el => el._id === this.$route.params.id);
-        },
-        characterSheet() {
-            if(this.game)
-                return {...this.$store.state['character-sheets'][this.game.characterSheet._id]}
-            return {}
         }
     },
     methods: {

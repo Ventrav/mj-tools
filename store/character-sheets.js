@@ -27,5 +27,8 @@ export const actions = {
     async add({ commit }, payload) {
         const { data } = await this.$axios.post('/api/character-sheets', {data: payload});
         commit('ADD_CHARACTER_SHEET', data);
-    }  
+    },
+    updateForBuild({ commit }, payload) {
+        commit('ADD_CHARACTER_SHEET', payload);
+    } 
 }
