@@ -1,21 +1,22 @@
-<template>
-    <b-tabs card>
-        <b-tab v-for="(section, sectionIndex) in sections" :key="sectionIndex" :title="section.name">
-            <b-card-text>
+    <template>
+    <b-tabs card small>
+        <b-tab v-for="(section, sectionIndex) in sections" :key="sectionIndex" :title="section.name" lazy>
+            <b-card-text class="gap--10px flex flex-column">
                 <div class="flex flex-row align-items-center gap--5px">
                     <b-input-group prepend="Nom de la section" class="flex-grow-1">
                         <b-input v-model="section.name"></b-input>
                     </b-input-group>
                     <b-btn-group>
-                        <b-button variant="success" @click="addRowToSection(section, sectionIndex)">Ajouter ligne</b-button>
-                        <b-button variant="danger" @click="deleteSection(sectionIndex)">Supprimer section</b-button>
+                        <b-button variant="danger" @click="deleteSection(sectionIndex)">
+                            <b-icon-trash-fill />
+                        </b-button>
                     </b-btn-group>
                 </div>
                 <div class="flex flex-column row-container gap--10px">
                     <div class="flex flex-column custom-row gap--5px" v-for="(row, rowIndex) in section.rows" :key="rowIndex">
                         <div class="flex flex-row">
                             <h4 class="flex-grow-1">Lignes n° {{ rowIndex + 1 }}</h4>
-                            <DeleteAreYouSure :id="`are-you-sure-${rowIndex}`" @sure="deleteLine(sectionIndex, rowIndex)" />
+                            <DeleteAreYouSure :i="`are-you-sure-${rowIndex}`" @sure="deleteLine(sectionIndex, rowIndex)" />
                         </div>
                         <!-- Line content  / attributes -->
                         <div v-for="(attribute, attributeIndex) in row.attributes" :key="attributeIndex" class="flex flex-row gap--5px">
@@ -40,10 +41,17 @@
                         </div>
                     </div>
                 </div>
+                <div class="flex justify-content-end">
+                    <b-button variant="primary" @click="addRowToSection(section, sectionIndex)">
+                        Ajouter une ligne
+                    </b-button>
+                </div>
             </b-card-text>
         </b-tab>
         <template #tabs-end>
-            <b-btn size="sm" variant="outline-primary" @click="addSection">Ajouter section</b-btn>
+            <b-btn size="sm" variant="outline" @click="addSection">
+                <b-icon-folder-plus />
+            </b-btn>
         </template>
     </b-tabs>
 </template>
@@ -75,6 +83,7 @@ export default {
     },
     data: () => {
         return {
+            activeTab: 0,
             sections: []
         }
     },

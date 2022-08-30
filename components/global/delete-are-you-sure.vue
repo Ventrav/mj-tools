@@ -1,9 +1,9 @@
 <template>
     <div>
-      <b-button :id="id" variant="danger">
+      <b-button :id="i" variant="danger">
         <b-icon-trash-fill />
       </b-button>
-      <b-popover :target="id" triggers="hover" placement="top" ref="popover">
+      <b-popover :target="i" triggers="hover" placement="top" ref="popover">
         <template #title>Est-tu sur de toi ?</template>
         <b-btn-group>
             <b-button variant="success" @click="validate">Oui</b-button>
@@ -17,7 +17,7 @@
 export default {
   name: '',
   props: {
-    id: {
+    i: {
       type: String,
       required: true
     },

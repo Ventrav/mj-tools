@@ -9,7 +9,7 @@
             <b-btn :pressed="!editMode" @click="toggleMode">
                 <b-icon-eye-fill />
             </b-btn>
-            <b-btn variant="primary">
+            <b-btn variant="primary" @click="save" v-if="editMode">
                 Save
             </b-btn>
         </div>
@@ -17,7 +17,7 @@
             Créer
         </b-btn>
         <!-- Component to create / edit the character sheet -->
-        <builder v-else-if="editMode" :characterSheetId="game.characterSheet._id" />
+        <builder v-else-if="editMode" :characterSheetId="game.characterSheet._id" ref="builder" />
         <!-- Component to display the character sheet -->
         <visualizer v-else :characterSheetId="game.characterSheet._id" @editModeAsked="toggleMode" />
     </b-container>
@@ -51,6 +51,10 @@ export default {
         },
         toggleMode() {
             this.editMode = !this.editMode
+        },
+        save() {
+            // Bon c'est moche mais j'ai eu la flemme
+            this.$refs.builder.saveCharacterSheet(); 
         }
     }
 }
