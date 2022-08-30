@@ -5,6 +5,16 @@
 .flex-column {
   flex-direction: column;
 }
+.flex-row {
+  flex-direction: row;
+}
+
+.justify-content-end {
+  justify-content: end;
+}
+.justify-center {
+  justify-content: center;
+}
 
 .flex-grow-1 {
   flex-grow: 1;
@@ -20,4 +30,7 @@
 
 .gap--5px {
   gap: 5px;
+}
+.gap--10px {
+  gap: 10px;
 }
