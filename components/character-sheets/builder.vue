@@ -15,7 +15,7 @@
                                     <b-button variant="success" @click="addRowToSection(section, sectionIndex)">Ajouter ligne</b-button>
                                     <b-button variant="danger" @click="deleteSection(sectionIndex)">Supprimer section</b-button>
                                     <b-button variant="primary" @click="saveCharacterSheet">Sauvegarder</b-button>
-                                    <b-button variant="warning">Visualiser la feuille</b-button>
+                                    <b-button variant="warning" @click="enableVisuMode">Visualiser la feuille</b-button>
                                 </b-btn-group>
                             </b-col>
                         </b-row>
@@ -47,7 +47,7 @@
                                     </b-col>
                                     <b-col cols="2">
                                         <b-input-group prepend="Ordre">
-                                            <b-form-input v-model="attribute.order"></b-form-input>
+                                            <b-form-input type="number" v-model="attribute.order"></b-form-input>
                                         </b-input-group>
                                     </b-col>
                                     <b-col cols="2">
@@ -123,6 +123,9 @@ export default {
             console.log(sections)
             let data = {...this.characterSheetBuilding, sections};
             this.$store.dispatch('character-sheets/update', data)
+        },
+        enableVisuMode() {
+            this.$emit('visuModeAsked');
         }
     },
     computed: {

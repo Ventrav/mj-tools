@@ -4,17 +4,24 @@
         <b-row>
             <b-col cols="12" class="mt-3">
                 <b-btn block v-if="!game.characterSheet" @click="createCharacterSheet">Créer</b-btn>
-                <builder v-else :characterSheetId="game.characterSheet._id"></builder>
+                <builder v-else-if="editMode" :characterSheetId="game.characterSheet._id" @visuModeAsked="passToVisuMode"></builder>
+                <visualizer v-else :characterSheetId="game.characterSheet._id" @editModeAsked="passToEditMode"></visualizer>
             </b-col>
         </b-row>
-        {{game.characterSheet}}
     </b-container>
 </template>
 <script>
 import builder from '~/components/character-sheets/builder.vue';
+import visualizer from '~/components/character-sheets/visualizer.vue';
 export default {
     components: {
-        builder
+        builder,
+        visualizer
+    },
+    data: () => {
+        return {
+            editMode: true
+        }
     },
     beforeMount() {
         this.$store.dispatch('games/fetch')
@@ -27,6 +34,12 @@ export default {
     methods: {
         createCharacterSheet() {
             this.$store.dispatch("character-sheets/add", {game: this.game._id});
+        },
+        passToEditMode() {
+            this.editMode = true;
+        },
+        passToVisuMode() {
+            this.editMode = false;
         }
     }
 }
