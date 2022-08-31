@@ -3,14 +3,14 @@
         <h1>{{ game.name }}</h1>
         <!-- Boutons to switch from edit mode / read only mode -->
         <div class="flex flex-row gap--5px justify-content-end">
+            <b-btn variant="primary" @click="save" v-if="editMode">
+                Save
+            </b-btn>
             <b-btn :pressed="editMode"  @click="toggleMode">
                 <b-icon-pencil-square />
             </b-btn>
             <b-btn :pressed="!editMode" @click="toggleMode">
                 <b-icon-eye-fill />
-            </b-btn>
-            <b-btn variant="primary" @click="save" v-if="editMode">
-                Save
             </b-btn>
         </div>
         <b-btn block v-if="!game.characterSheet" @click="createCharacterSheet">
@@ -26,11 +26,13 @@
 <script>
 import builder from '~/components/character-sheets/builder.vue';
 import visualizer from '~/components/character-sheets/visualizer.vue';
+import incrementInput from '~/components/global/input-number.vue';
 
 export default {
     components: {
         builder,
-        visualizer
+        visualizer,
+        incrementInput
     },
     data: () => {
         return {

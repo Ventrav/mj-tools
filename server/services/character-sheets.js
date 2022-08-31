@@ -53,7 +53,7 @@ export const setCharacterSheet = (data) => new Promise((resolve, reject) => {
             dbo.collection('character-sheets').updateOne(filter, values, (err, res) => {
                 if(err)
                     throw err;
-                console.table(res);
+                resolve({...data, _id: id});
             });
         })
     } catch (e) {

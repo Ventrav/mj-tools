@@ -29,8 +29,8 @@ export const actions = {
         commit('ADD_CHARACTER_SHEET', data);
     },
     async update({ commit }, payload) {
-        console.log(payload)
         const { data } = await this.$axios.patch(`/api/character-sheets/${payload._id}`, {data: payload})
-        commit('SET_CHARACTER_SHEET', payload);
+        console.table(data);
+        commit('ADD_CHARACTER_SHEET', data);
     }
 }
