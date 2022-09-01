@@ -1,19 +1,15 @@
 <template>
     <b-container fluid>
         <h1>Jeux</h1>
-        <b-row>
-            <b-col cols="11">
-                <b-form-input placeholder="Nom du jeu" v-model="gameName"></b-form-input>
-            </b-col>
-            <b-col cols="1">
-                <b-button block @click="storeGame">Sauvegarder</b-button>
-            </b-col>
-        </b-row>
-        <b-row class="mt-5">
-            <b-col cols="12">
-                <gameTable :games="games"></gameTable>
-            </b-col>
-        </b-row>
+        <div class="flex gap--5px flex-column">
+            <div class="flex align-items-center gap--5px">
+                <b-form-input placeholder="Nom du jeu" v-model="gameName" class="flex-grow-1" />
+                <b-button @click="storeGame">
+                    Sauvegarder
+                </b-button>
+            </div>
+            <gameTable :games="games" />
+        </div>
     </b-container>
 </template>
 <script>

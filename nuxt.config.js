@@ -15,9 +15,11 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
+  target: 'static',
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    '@/assets/css/global.css',
   ],
   serverMiddleware: ['~/server/index.js'],
 
@@ -31,6 +33,7 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
+    '@nuxt/typescript-build'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -39,7 +42,9 @@ export default {
     'bootstrap-vue/nuxt',
     '@nuxtjs/axios'
   ],
-
+  bootstrapVue: {
+    icons: true
+  },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   }

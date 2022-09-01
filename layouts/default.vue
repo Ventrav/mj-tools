@@ -6,7 +6,9 @@
                 <b-nav-item @click="goTo('games')" :active="nameRoute === 'games'">Jeux</b-nav-item>
             </b-navbar-nav>
         </b-navbar>
-        <Nuxt/>
+        <div class="main-container">
+            <Nuxt/>
+        </div>
     </div>
 </template>
 
@@ -24,3 +26,9 @@ export default {
     }
 }
 </script>
+<style scoped>
+    .main-container {
+        max-width: 1350px;
+        margin: auto;
+    }
+</style>
