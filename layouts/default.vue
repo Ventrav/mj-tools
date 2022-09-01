@@ -10,17 +10,18 @@
     </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import Vue from 'vue';
+export default Vue.extend({
     computed: {
         nameRoute() {
             return this.$route.name
         }
     },
     methods: {
-        goTo(name) {
+        goTo(name: string) {
             this.$router.push({name})
         }
     }
-}
+})
 </script>
