@@ -3,7 +3,12 @@
         <b-btn class="btn-minus" @click="decrease">
             <b-icon-dash-circle/>
         </b-btn>
-        <input type="number" class="no-radius-border" v-model="increment">
+        <input 
+            type="number" 
+            class="no-radius-border" 
+            :value="value"
+            @input="updateIncrement"
+        >
         <b-btn class="btn-plus" @click="increase">
             <b-icon-plus-circle/>
         </b-btn>
@@ -11,59 +16,48 @@
 </template>
 <script>
 export default {
-    props: {
-        incrementProp: {
-            default: 1,
-            type: Number
-        },
-        maxProp: {
-            default: 99,
-            type: Number
-        },
-        minProp: {
-            default: 0,
-            type: Number
-        },
-        stepProp: {
-            default: 1,
-            type: Number
-        },
-    },
+    props: ['value'],
     data()  {
         return {
-            increment: this.incrementProp,
-            max: this.maxProp,
-            min: this.minProp,
-            step: this.stepProp
+            max: (this.maxProp) ? this.maxProp : 99,
+            min: (this.minProp) ? this.minProp : 1,
+            step: (this.stepProp) ? this.stepProp : 1
         }
     },
     methods: {
         increase() {
+            let increment = ~~this.value
             if(this.nextValue <= this.max)
-                this.increment+=this.step
-            else if(this.increment < this.max)
-                this.increment += (this.max - this.increment)
+                increment+=this.step
+            else if(increment < this.max)
+                increment += (this.max - increment)
+            this.$emit('input', increment)
         },
         decrease() {
+            let increment = ~~this.value
             if(this.previousValue >= this.min)
-                this.increment-=this.step
-            else if(this.increment > this.min)
-                this.increment -= (this.increment - this.min)
+                increment-=this.step
+            else if(increment > this.min)
+                increment -= (increment - this.min)
+            this.$emit('input', increment)
+        },
+        updateIncrement(e) {
+            this.$emit('input', e.target.value);
         }
     },
     computed: {
         isMaxed() {
-            return this.incrementValue === this.max
+            return ~~this.value === this.max
         },
         isMined() {
-            return this.incrementValue === this.min
+            return ~~this.value === this.min
         },
         nextValue() {
-            let currentIncrement = this.increment
+            let currentIncrement = ~~this.value
             return currentIncrement+=this.step
         },
         previousValue() {
-            let currentIncrement = this.increment
+            let currentIncrement = ~~this.value
             return currentIncrement-=this.step
         }
     }
