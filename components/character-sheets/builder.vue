@@ -23,9 +23,10 @@
                             <b-input-group prepend="Nom">
                                 <b-form-input v-model="attribute.name"></b-form-input>
                             </b-input-group>
-                            <b-input-group prepend="Taille" append="/12">
+                            <!-- <b-input-group prepend="Taille" append="/12">
                                 <b-form-input type="number" v-model="attribute.size"></b-form-input>
-                            </b-input-group>
+                            </b-input-group> -->
+                            <InputNumber v-model="attribute.size" />
                             <b-input-group prepend="Type">
                                 <b-form-input disabled v-model="attribute.type"></b-form-input>
                             </b-input-group>
@@ -68,6 +69,7 @@
 </style>
 <script>
 import DeleteAreYouSure from '../global/delete-are-you-sure.vue';
+import InputNumber from '../global/input-number.vue';
 
 export default {
     props: [
@@ -75,6 +77,7 @@ export default {
     ],
     components: {
         DeleteAreYouSure,
+        InputNumber
     },
     beforeMount(){
         for(const section of this.characterSheetBuilding.sections) {
