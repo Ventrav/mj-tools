@@ -37,7 +37,45 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/bootstrap
     'bootstrap-vue/nuxt',
+    '@nuxtjs/axios',
+    '@nuxtjs/auth-next'
   ],
+  auth: {
+    // Options
+    strategies: {
+      local: {
+        token: {
+          property: 'token',
+          global: true,
+          // required: true,
+          // type: 'Bearer'
+        },
+        user: {
+          property: 'user',
+          // autoFetch: true
+        },
+        endpoints: {
+          login: { url: '/api/auth/login', method: 'post' },
+          logout: { url: '/api/auth/logout', method: 'post' },
+          user: { url: '/api/auth/user', method: 'get' }
+        }
+      }
+    }
+  },
+  // router: {
+  //   middleware: ['auth'],
+  // },
+  // Axios module configuration: https://go.nuxtjs.dev/config-axios
+  axios: {
+    baseURL: 'http://localhost:3000/',
+    // `xsrfCookieName` is the name of the cookie to use as a value for xsrf token
+    xsrfCookieName: 'XSRF-TOKEN', // default
+
+    // `xsrfHeaderName` is the name of the http header that carries the xsrf token value
+    xsrfHeaderName: 'X-XSRF-TOKEN', // default
+  },
+
+
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
