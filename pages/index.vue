@@ -2,5 +2,8 @@
     <h1>Acceuil</h1>
 </template>
 
-<script setup>
+<script>
+export default {
+  name: 'Index-Acceuil',
+};
 </script>
