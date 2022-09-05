@@ -19,45 +19,44 @@
         <!-- Component to create / edit the character sheet -->
         <builder v-else-if="editMode" :characterSheetId="game.characterSheet._id" ref="builder" />
         <!-- Component to display the character sheet -->
-        <visualizer v-else :characterSheetId="game.characterSheet._id" @editModeAsked="toggleMode" />
+        <visualizer
+            v-else :characterSheetId="game.characterSheet._id"
+            @editModeAsked="toggleMode"
+        />
     </b-container>
 </template>
 
 <script>
 import builder from '~/components/character-sheets/builder.vue';
 import visualizer from '~/components/character-sheets/visualizer.vue';
-import incrementInput from '~/components/global/input-number.vue';
 
 export default {
-    components: {
-        builder,
-        visualizer,
-        incrementInput
+  components: {
+    builder,
+    visualizer,
+  },
+  data: () => ({
+    editMode: true,
+  }),
+  beforeMount() {
+    this.$store.dispatch('games/fetch');
+  },
+  computed: {
+    game() {
+      return this.$store.getters['games/list'].find((el) => el._id === this.$route.params.id);
     },
-    data: () => {
-        return {
-            editMode: true
-        }
+  },
+  methods: {
+    createCharacterSheet() {
+      this.$store.dispatch('character-sheets/add', { game: this.game._id });
     },
-    beforeMount() {
-        this.$store.dispatch('games/fetch')
+    toggleMode() {
+      this.editMode = !this.editMode;
     },
-    computed: {
-        game() {
-            return this.$store.getters["games/list"].find(el => el._id === this.$route.params.id);
-        }
+    save() {
+      // Bon c'est moche mais j'ai eu la flemme
+      this.$refs.builder.saveCharacterSheet();
     },
-    methods: {
-        createCharacterSheet() {
-            this.$store.dispatch("character-sheets/add", { game: this.game._id });
-        },
-        toggleMode() {
-            this.editMode = !this.editMode
-        },
-        save() {
-            // Bon c'est moche mais j'ai eu la flemme
-            this.$refs.builder.saveCharacterSheet(); 
-        }
-    }
-}
+  },
+};
 </script>

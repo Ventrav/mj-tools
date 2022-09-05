@@ -1,7 +1,4 @@
-import express from 'express'
-import { Router } from 'express';
-import { MongoClient } from 'mongodb';
-import dbConfig from './config/database'
+import express, { Router } from 'express';
 import bodyParser from 'body-parser';
 import gamesRouter from './routes/games';
 import characterSheetsRouter from './routes/character-sheets';
@@ -14,7 +11,7 @@ app.use(gamesRouter);
 app.use(characterSheetsRouter);
 app.use(router);
 
-module.exports=  {
-    path: '/api',
-    handler: app,
-};  
+export default {
+  path: '/api',
+  handler: app,
+};

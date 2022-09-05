@@ -26,12 +26,12 @@ import Vue from 'vue';
 export default Vue.extend({
   name: 'Layout-default',
   computed: {
-    nameRoute() {
-      return this.$route.name;
+    nameRoute(): string {
+      return (this.$route.name) ? this.$route.name : '';
     },
   },
   methods: {
-    goTo(name: string) {
+    goTo(name: string): void {
       this.$router.push({ name });
     },
   },

@@ -12,29 +12,29 @@
         </div>
     </b-container>
 </template>
-<script>
+<script lang="ts">
 import gameTable from '~/components/games/gameTable.vue';
+
 export default {
-    components: {
-        gameTable
+  name: 'Index-jeux',
+  components: {
+    gameTable,
+  },
+  beforeMount() {
+    this.$store.dispatch('games/fetch');
+  },
+  data: () => ({
+    gameName: '',
+  }),
+  methods: {
+    storeGame() {
+      this.$store.dispatch('games/add', { name: this.gameName });
     },
-    beforeMount() {
-        this.$store.dispatch('games/fetch')
-    }, 
-    data: () => {
-        return {
-            gameName: ''
-        }
+  },
+  computed: {
+    games() {
+      return this.$store.getters['games/list'];
     },
-    methods: {
-        storeGame() {
-            this.$store.dispatch('games/add', {name: this.gameName});
-        }
-    }, 
-    computed: {
-        games() {
-            return this.$store.getters["games/list"];
-        }
-    }
-}
+  },
+};
 </script>

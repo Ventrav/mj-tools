@@ -15,11 +15,10 @@
 <script>
 
 export default {
-  name: '',
   props: {
     i: {
       type: String,
-      required: true
+      required: true,
     },
   },
   methods: {
@@ -29,7 +28,7 @@ export default {
     },
     closePopover() {
       this.$refs.popover.doClose();
-    }
-  }
-}
+    },
+  },
+};
 </script>
