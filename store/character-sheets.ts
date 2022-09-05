@@ -6,7 +6,7 @@ export const state = () => ({});
 
 export type RootState = ReturnType<typeof state>;
 
-export const mutations = {
+export const mutations: MutationTree<RootState> = {
   ADD_CHARACTER_SHEET(s: RootState, payload: CharacterSheet) {
     Vue.set(s, payload._id, payload);
   },
