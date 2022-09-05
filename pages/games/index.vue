@@ -13,9 +13,10 @@
     </b-container>
 </template>
 <script lang="ts">
+import Vue from 'vue';
 import gameTable from '~/components/games/gameTable.vue';
 
-export default {
+export default Vue.extend({
   name: 'Index-jeux',
   components: {
     gameTable,
@@ -36,5 +37,5 @@ export default {
       return this.$store.getters['games/list'];
     },
   },
-};
+});
 </script>

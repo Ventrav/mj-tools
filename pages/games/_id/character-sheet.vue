@@ -27,10 +27,11 @@
 </template>
 
 <script>
+import Vue from 'vue';
 import builder from '~/components/character-sheets/builder.vue';
 import visualizer from '~/components/character-sheets/visualizer.vue';
 
-export default {
+export default Vue.extend({
   components: {
     builder,
     visualizer,
@@ -58,5 +59,5 @@ export default {
       this.$refs.builder.saveCharacterSheet();
     },
   },
-};
+});
 </script>

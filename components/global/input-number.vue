@@ -15,7 +15,9 @@
     </div>
 </template>
 <script>
-export default {
+import Vue from 'vue';
+
+export default Vue.extend({
   props: ['value'],
   data() {
     return {
@@ -26,19 +28,22 @@ export default {
   },
   methods: {
     increase() {
-      let increment = ~~this.value;
-      if (this.nextValue <= this.max) { increment += this.step; } else if (increment < this.max) {
+      let increment = this.value;
+      if (this.nextValue <= this.max) {
+        increment += this.step;
+      } else if (increment < this.max) {
         increment += (this.max - increment);
-        this.$emit('input', increment);
       }
+      this.$emit('input', increment);
     },
     decrease() {
-      let increment = parseInt(this.value);
-      if (this.previousValue >= this.min) { increment -= this.step; }
-      else if (increment > this.min) {
+      let increment = parseInt(this.value, 10);
+      if (this.previousValue >= this.min) {
+        increment -= this.step;
+      } else if (increment > this.min) {
         increment -= (increment - this.min);
-        this.$emit('input', increment);
       }
+      this.$emit('input', increment);
     },
     updateIncrement(e) {
       this.$emit('input', e.target.value);
@@ -46,21 +51,23 @@ export default {
   },
   computed: {
     isMaxed() {
-      return ~~this.value === this.max;
+      return this.value === this.max;
     },
     isMined() {
-      return ~~this.value === this.min;
+      return this.value === this.min;
     },
     nextValue() {
-      let currentIncrement = ~~this.value;
-      return currentIncrement += this.step;
+      let currentIncrement = this.value;
+      currentIncrement += this.step;
+      return currentIncrement;
     },
     previousValue() {
-      let currentIncrement = ~~this.value;
-      return currentIncrement -= this.step;
+      let currentIncrement = this.value;
+      currentIncrement -= this.step;
+      return currentIncrement;
     },
   },
-};
+});
 </script>
 <style scoped>
 .no-radius-border {

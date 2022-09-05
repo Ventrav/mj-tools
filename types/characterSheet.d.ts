@@ -1,4 +1,4 @@
-declare type CharacterSheet {
+declare type CharacterSheet = {
   _id: string,
   game: string
 }
