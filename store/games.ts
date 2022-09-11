@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import { GetterTree, ActionTree, MutationTree } from 'vuex';
-import Game from '~/types/game';
+import CharacterSheet from '~/types/characterSheet.ts';
+import Game from '~/types/game.ts';
 
 export const state = () => ({});
 
@@ -19,9 +20,9 @@ export const mutations: MutationTree<RootState> = {
 
 export const getters: GetterTree<RootState, RootState> = {
   list(s: RootState, g, rootState, rootGetters) {
-    return Object.values(s).map((el: Game) => ({
+    return Object.values(s).map((el) => ({
       ...el,
-      characterSheet: rootGetters['character-sheets/list'].find((cs) => cs.game === el._id),
+      characterSheet: rootGetters['character-sheets/list'].find((cs:CharacterSheet) => cs.game === el._id),
     }));
   },
 };
